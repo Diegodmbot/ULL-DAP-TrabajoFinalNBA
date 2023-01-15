@@ -15,7 +15,7 @@ public class StrategyPlayer extends DataFetcherStrategy {
     public void setRequest() {
         request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create(apiUrl + playerUrl + playerId))
+                .uri(URI.create(apiApiSportsUrl + playerUrl + playerId))
                 .header("X-RapidAPI-Key", TOKEN)
                 .build();
     }

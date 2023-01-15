@@ -8,15 +8,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public abstract class DataFetcherStrategy {
-    // Se usan dos apis distintas.
-    // Para obtener los datos de los jugadores y equipos:
+    // Se usa la API Api-Sports de RapidAPI para obtener los datos
     // https://api-sports.io/documentation/nba/v2
     // https://rapidapi.com/api-sports/api/api-nba
-    final String apiUrl = "https://api-nba-v1.p.rapidapi.com";
-    final String TOKEN = "X";
-    // Para obtener los datos de los partidos:
-    // https://www.balldontlie.io/#introduction
-    final String apiGamesUrl = "https://www.balldontlie.io/api/v1";
+    final String apiApiSportsUrl = "https://api-nba-v1.p.rapidapi.com";
+    final String TOKEN = "beb98c0c7dmsh1e890eea4e48b1dp1f6bf6jsnee9cce3c59cd";
     // Atributos que se usan para la conexion
     HttpRequest request;
 
