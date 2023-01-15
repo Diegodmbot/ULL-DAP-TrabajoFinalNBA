@@ -1,0 +1,37 @@
+{
+    "response": [{
+        "fga": 4325,
+        "pointsOffTurnovers": 0,
+        "steals": 322,
+        "fgm": 2026,
+        "fgp": "65.1",
+        "longestRun": 0,
+        "points": 5393,
+        "fta": 1036,
+        "assists": 1120,
+        "offReb": 483,
+        "games": 47,
+        "pointsInPaint": 0,
+        "biggestLead": 0,
+        "fastBreakPoints": 0,
+        "ftm": 846,
+        "plusMinus": -38,
+        "ftp": "81.7",
+        "tpa": 1449,
+        "blocks": 233,
+        "defReb": 1590,
+        "pFouls": 913,
+        "tpm": 495,
+        "totReb": 2073,
+        "tpp": "34.3",
+        "turnovers": 603,
+        "secondChancePoints": 0
+    }],
+    "get": "teams/statistics",
+    "parameters": {
+        "season": "2022",
+        "id": "1"
+    },
+    "results": 1,
+    "errors": []
+}

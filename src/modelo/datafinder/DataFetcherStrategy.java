@@ -7,6 +7,8 @@ import java.net.http.HttpResponse;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import org.json.JSONObject;
+
 public abstract class DataFetcherStrategy {
     // Se usa la API Api-Sports de RapidAPI para obtener los datos
     // https://api-sports.io/documentation/nba/v2
@@ -17,17 +19,12 @@ public abstract class DataFetcherStrategy {
     HttpRequest request;
 
     public abstract void setRequest();
-    public void executeRequest() throws IOException, InterruptedException {
+    public JSONObject executeRequest() throws IOException, InterruptedException {
         setRequest();
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());
+        return new JSONObject(response.body());
     }
-    // Se usa para obtener la fecha de hoy en el formato que se necesita
-    protected String getTodayDate() {
-        LocalDate dateObj = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return dateObj.format(formatter);
-    }
+
     // Se usa para obtener el año de la temporada actual
     protected int getSeasonYear() {
         LocalDate dateObj = LocalDate.now();

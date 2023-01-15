@@ -1,5 +1,7 @@
 package modelo.datafinder;
 
+import org.json.JSONObject;
+
 // Clase que se encarga de ejecutar la estrategia, es el objeto con el que interactua el cliente
 public class StrategyContext {
     private DataFetcherStrategy strategy;
@@ -10,7 +12,7 @@ public class StrategyContext {
     }
 
     // El cliente no tiene que saber como se ejecuta la estrategia, solo que se ejecuta
-    public void executeRequest() throws Exception {
-        strategy.executeRequest();
+    public JSONObject executeRequest() throws Exception {
+        return strategy.executeRequest();
     }
 }

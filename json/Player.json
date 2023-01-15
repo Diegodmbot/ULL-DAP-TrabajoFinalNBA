@@ -1,0 +1,35 @@
+{
+    "response": [{
+        "college": "Wisconsin",
+        "firstname": "Frank",
+        "affiliation": "Wisconsin/USA",
+        "leagues": {"standard": {
+            "pos": "F-C",
+            "jersey": 8,
+            "active": true
+        }},
+        "birth": {
+            "date": "1993-04-04",
+            "country": "USA"
+        },
+        "weight": {
+            "pounds": null,
+            "kilograms": null
+        },
+        "id": 290,
+        "nba": {
+            "start": 2015,
+            "pro": 0
+        },
+        "lastname": "Kaminsky",
+        "height": {
+            "inches": null,
+            "feets": null,
+            "meters": null
+        }
+    }],
+    "get": "players/",
+    "parameters": {"id": "290"},
+    "results": 1,
+    "errors": []
+}

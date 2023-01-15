@@ -5,17 +5,15 @@ import java.net.http.HttpRequest;
 
 public class StrategyTeam extends DataFetcherStrategy {
     final String teamUrl = "/teams?";
-    String teamId;
 
-    public StrategyTeam(int teamId) {
-        this.teamId = "id=" + teamId;
+    public StrategyTeam() {
     }
 
     @Override
     public void setRequest() {
         request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create(apiApiSportsUrl + teamUrl + teamId))
+                .uri(URI.create(apiApiSportsUrl + teamUrl))
                 .header("X-RapidAPI-Key", TOKEN)
                 .build();
     }
