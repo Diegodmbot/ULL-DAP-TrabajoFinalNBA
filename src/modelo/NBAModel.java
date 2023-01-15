@@ -7,12 +7,13 @@ import java.util.ArrayList;
 
 public class NBAModel {
     private static NBAModel instance = null;
-    private ArrayList<Team> teams;
+    private final ArrayList<Team> teamsList;
     private StrategyContext strategyContext;
     private NBAModel() {
-        teams = new ArrayList<>();
+        teamsList = new ArrayList<>();
         strategyContext = new StrategyContext();
     }
+    // Usamos un Singleton para que solo haya una instancia de la clase NBAModel
     public static NBAModel getInstance() {
         if (instance == null) {
             instance = new NBAModel();
@@ -20,12 +21,20 @@ public class NBAModel {
         return instance;
     }
 
-    public void setTeamList() throws Exception {
+    public void setTeamList() {
+        System.out.println("Obteniendo lista de equipos...");
         strategyContext.setStrategy(new StrategyTeam());
         JSONObject object = strategyContext.executeRequest();
-        for (int i = 0; i < object.getJSONArray("api").length(); i++) {
-            JSONObject team = object.getJSONArray("api").getJSONObject(i);
-            teams.add(new Team(team.getInt("teamId"), team.getString("fullName"), team.getString("shortName")));
+        // Recorre el array de equipos y selecciona los equipos de la NBA
+        for (int i = 0; i < object.getJSONArray("response").length(); i++) {
+            JSONObject team = object.getJSONArray("response").getJSONObject(i);
+            if(team.getBoolean("nbaFranchise")) {
+                teamsList.add(new Team(team.getInt("id"), team.getString("name"), team.getString("code")));
+            }
         }
+    }
+
+    public ArrayList<Team> getTeamsList() {
+        return teamsList;
     }
 }

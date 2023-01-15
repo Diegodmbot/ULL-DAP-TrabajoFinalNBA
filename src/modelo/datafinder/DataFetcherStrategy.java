@@ -1,6 +1,5 @@
 package modelo.datafinder;
 
-import java.io.IOException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -19,10 +18,17 @@ public abstract class DataFetcherStrategy {
     HttpRequest request;
 
     public abstract void setRequest();
-    public JSONObject executeRequest() throws IOException, InterruptedException {
+    public JSONObject executeRequest() {
+        try {
+
         setRequest();
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println("Status: " + response.statusCode());
         return new JSONObject(response.body());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     // Se usa para obtener el año de la temporada actual

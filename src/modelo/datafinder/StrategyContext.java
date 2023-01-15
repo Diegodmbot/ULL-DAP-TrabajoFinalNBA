@@ -12,7 +12,7 @@ public class StrategyContext {
     }
 
     // El cliente no tiene que saber como se ejecuta la estrategia, solo que se ejecuta
-    public JSONObject executeRequest() throws Exception {
+    public JSONObject executeRequest() {
         return strategy.executeRequest();
     }
 }
