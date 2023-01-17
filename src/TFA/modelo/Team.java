@@ -1,4 +1,4 @@
-package modelo;
+package TFA.modelo;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -2,38 +2,28 @@
 
 title __DATAFINDER's Class Diagram__\n
 
-  namespace  src{
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
       namespace datafinder {
-        abstract class modelo.datafinder.DataFetcherStrategy {
+        abstract class TFA.modelo.datafinder.DataFetcherStrategy {
             ~ TOKEN : String
             ~ apiApiSportsUrl : String
             ~ request : HttpRequest
             + executeRequest()
             {abstract} + setRequest()
             # getSeasonYear()
-            # getTodayDate()
         }
       }
     }
   }
   
 
-  namespace src {
-    namespace odelo {
-      namespace datafinder {
-        class modelo.datafinder.PruebaDataFetcher {
-            {static} + main()
-        }
-      }
-    }
-  }
   
 
-  namespace  src{
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
       namespace datafinder {
-        class modelo.datafinder.StrategyContext {
+        class TFA.modelo.datafinder.StrategyContext {
             + executeRequest()
             + setStrategy()
         }
@@ -42,10 +32,10 @@ title __DATAFINDER's Class Diagram__\n
   }
   
 
-  namespace src {
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
       namespace datafinder {
-        class modelo.datafinder.StrategyGames {
+        class TFA.modelo.datafinder.StrategyGames {
             ~ currentPages : String
             ~ gamesUrl : String
             ~ season : String
@@ -58,10 +48,10 @@ title __DATAFINDER's Class Diagram__\n
   }
   
 
-  namespace src {
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
       namespace datafinder {
-        class modelo.datafinder.StrategyPlayer {
+        class TFA.modelo.datafinder.StrategyPlayer {
             ~ playerId : String
             ~ playerUrl : String
             + StrategyPlayer()
@@ -72,11 +62,10 @@ title __DATAFINDER's Class Diagram__\n
   }
   
 
-  namespace  src{
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
       namespace datafinder {
-        class modelo.datafinder.StrategyTeam {
-            ~ teamId : String
+        class TFA.modelo.datafinder.StrategyTeam {
             ~ teamUrl : String
             + StrategyTeam()
             + setRequest()
@@ -86,10 +75,10 @@ title __DATAFINDER's Class Diagram__\n
   }
   
 
-  namespace  src{
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
       namespace datafinder {
-        class modelo.datafinder.StrategyTeamPlayers {
+        class TFA.modelo.datafinder.StrategyTeamPlayers {
             ~ playerUrl : String
             ~ season : String
             ~ teamId : String
@@ -101,10 +90,10 @@ title __DATAFINDER's Class Diagram__\n
   }
   
 
-  namespace  src{
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
       namespace datafinder {
-        class modelo.datafinder.StrategyTeamStandings {
+        class TFA.modelo.datafinder.StrategyTeamStandings {
             ~ league : String
             ~ season : String
             ~ standingUrl : String
@@ -117,10 +106,10 @@ title __DATAFINDER's Class Diagram__\n
   }
   
 
-  namespace  src{
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
       namespace datafinder {
-        class modelo.datafinder.StrategyTeamStats {
+        class TFA.modelo.datafinder.StrategyTeamStats {
             ~ season : String
             ~ teamId : String
             ~ teamStatsUrl : String
@@ -132,13 +121,13 @@ title __DATAFINDER's Class Diagram__\n
   }
   
 
-  modelo.datafinder.StrategyContext o-- modelo.datafinder.DataFetcherStrategy : strategy
-  modelo.datafinder.StrategyGames -up-|> modelo.datafinder.DataFetcherStrategy
-  modelo.datafinder.StrategyPlayer -up-|> modelo.datafinder.DataFetcherStrategy
-  modelo.datafinder.StrategyTeam -up-|> modelo.datafinder.DataFetcherStrategy
-  modelo.datafinder.StrategyTeamPlayers -up-|> modelo.datafinder.DataFetcherStrategy
-  modelo.datafinder.StrategyTeamStandings -up-|> modelo.datafinder.DataFetcherStrategy
-  modelo.datafinder.StrategyTeamStats -up-|> modelo.datafinder.DataFetcherStrategy
+  TFA.modelo.datafinder.StrategyContext o-- TFA.modelo.datafinder.DataFetcherStrategy : strategy
+  TFA.modelo.datafinder.StrategyGames -up-|> TFA.modelo.datafinder.DataFetcherStrategy
+  TFA.modelo.datafinder.StrategyPlayer -up-|> TFA.modelo.datafinder.DataFetcherStrategy
+  TFA.modelo.datafinder.StrategyTeam -up-|> TFA.modelo.datafinder.DataFetcherStrategy
+  TFA.modelo.datafinder.StrategyTeamPlayers -up-|> TFA.modelo.datafinder.DataFetcherStrategy
+  TFA.modelo.datafinder.StrategyTeamStandings -up-|> TFA.modelo.datafinder.DataFetcherStrategy
+  TFA.modelo.datafinder.StrategyTeamStats -up-|> TFA.modelo.datafinder.DataFetcherStrategy
 
 
 right footer

@@ -2,133 +2,175 @@
 
 title __TFA-DAP's Class Diagram__\n
 
-  namespace  {
-    class Client {
+  namespace TFA {
+    class TFA.Client {
     }
   }
   
 
-  namespace  {
-    namespace odelo {
-      class modelo.Player {
+  namespace TFA {
+    class TFA.PruebasVista {
+    }
+  }
+  
+
+  namespace TFA {
+    namespace controlador {
+      class TFA.controlador.NBAController {
       }
     }
   }
   
 
-  namespace  {
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
+      class TFA.modelo.NBAModel {
+      }
+    }
+  }
+  
+
+  namespace TFA {
+    namespace modelo {
+      class TFA.modelo.Player {
+      }
+    }
+  }
+  
+
+  namespace TFA {
+    namespace modelo {
+      class TFA.modelo.PruebaModel {
+      }
+    }
+  }
+  
+
+  namespace TFA {
+    namespace modelo {
       enum Result {
       }
     }
   }
   
 
-  namespace  {
-    namespace odelo {
-      class modelo.Team {
+  namespace TFA {
+    namespace modelo {
+      class TFA.modelo.Team {
       }
     }
   }
   
 
-  namespace  {
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
       namespace datafinder {
-        abstract class modelo.datafinder.DataFetcherStrategy {
+        abstract class TFA.modelo.datafinder.DataFetcherStrategy {
         }
       }
     }
   }
   
 
-  namespace  {
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
       namespace datafinder {
-        class modelo.datafinder.PruebaDataFetcher {
+        class TFA.modelo.datafinder.PruebaDataFetcher {
         }
       }
     }
   }
   
 
-  namespace  {
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
       namespace datafinder {
-        class modelo.datafinder.StrategyContext {
+        class TFA.modelo.datafinder.StrategyContext {
         }
       }
     }
   }
   
 
-  namespace  {
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
       namespace datafinder {
-        class modelo.datafinder.StrategyGames {
+        class TFA.modelo.datafinder.StrategyGames {
         }
       }
     }
   }
   
 
-  namespace  {
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
       namespace datafinder {
-        class modelo.datafinder.StrategyPlayer {
+        class TFA.modelo.datafinder.StrategyPlayer {
         }
       }
     }
   }
   
 
-  namespace  {
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
       namespace datafinder {
-        class modelo.datafinder.StrategyTeam {
+        class TFA.modelo.datafinder.StrategyTeam {
         }
       }
     }
   }
   
 
-  namespace  {
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
       namespace datafinder {
-        class modelo.datafinder.StrategyTeamPlayers {
+        class TFA.modelo.datafinder.StrategyTeamPlayers {
         }
       }
     }
   }
   
 
-  namespace  {
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
       namespace datafinder {
-        class modelo.datafinder.StrategyTeamStandings {
+        class TFA.modelo.datafinder.StrategyTeamStandings {
         }
       }
     }
   }
   
 
-  namespace  {
-    namespace odelo {
+  namespace TFA {
+    namespace modelo {
       namespace datafinder {
-        class modelo.datafinder.StrategyTeamStats {
+        class TFA.modelo.datafinder.StrategyTeamStats {
         }
       }
     }
   }
   
 
-  modelo.datafinder.StrategyContext o-- modelo.datafinder.DataFetcherStrategy : strategy
-  modelo.datafinder.StrategyGames -up-|> modelo.datafinder.DataFetcherStrategy
-  modelo.datafinder.StrategyPlayer -up-|> modelo.datafinder.DataFetcherStrategy
-  modelo.datafinder.StrategyTeam -up-|> modelo.datafinder.DataFetcherStrategy
-  modelo.datafinder.StrategyTeamPlayers -up-|> modelo.datafinder.DataFetcherStrategy
-  modelo.datafinder.StrategyTeamStandings -up-|> modelo.datafinder.DataFetcherStrategy
-  modelo.datafinder.StrategyTeamStats -up-|> modelo.datafinder.DataFetcherStrategy
+  namespace TFA {
+    namespace vista {
+      class TFA.vista.NBAView {
+      }
+    }
+  }
+  
+
+  TFA.controlador.NBAController o-- TFA.modelo.NBAModel : model
+  TFA.controlador.NBAController o-- TFA.modelo.datafinder.StrategyContext : strategyContext
+  TFA.controlador.NBAController o-- TFA.vista.NBAView : view
+  TFA.modelo.NBAModel o-- TFA.modelo.datafinder.StrategyContext : strategyContext
+  TFA.modelo.datafinder.StrategyContext o-- TFA.modelo.datafinder.DataFetcherStrategy : strategy
+  TFA.modelo.datafinder.StrategyGames -up-|> TFA.modelo.datafinder.DataFetcherStrategy
+  TFA.modelo.datafinder.StrategyPlayer -up-|> TFA.modelo.datafinder.DataFetcherStrategy
+  TFA.modelo.datafinder.StrategyTeam -up-|> TFA.modelo.datafinder.DataFetcherStrategy
+  TFA.modelo.datafinder.StrategyTeamPlayers -up-|> TFA.modelo.datafinder.DataFetcherStrategy
+  TFA.modelo.datafinder.StrategyTeamStandings -up-|> TFA.modelo.datafinder.DataFetcherStrategy
+  TFA.modelo.datafinder.StrategyTeamStats -up-|> TFA.modelo.datafinder.DataFetcherStrategy
 
 
 right footer
