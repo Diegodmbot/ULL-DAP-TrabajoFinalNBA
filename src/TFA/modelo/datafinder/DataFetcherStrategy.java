@@ -13,7 +13,7 @@ public abstract class DataFetcherStrategy {
     // https://api-sports.io/documentation/nba/v2
     // https://rapidapi.com/api-sports/api/api-nba
     final String apiApiSportsUrl = "https://api-nba-v1.p.rapidapi.com";
-    final String TOKEN = "beb98c0c7dmsh1e890eea4e48b1dp1f6bf6jsnee9cce3c59cd";
+    final String TOKEN = "X";
     // Atributos que se usan para la conexion
     HttpRequest request;
 
