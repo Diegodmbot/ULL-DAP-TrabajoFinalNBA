@@ -3,9 +3,13 @@ package TFA.modelo;
 import TFA.modelo.datafinder.StrategyContext;
 import TFA.modelo.datafinder.StrategyTeam;
 import TFA.modelo.datafinder.StrategyTeamPlayers;
+import TFA.modelo.datafinder.StrategyTeamStandings;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import static TFA.modelo.Result.WIN;
+import static TFA.modelo.Result.LOSS;
 
 public class NBAModel {
     private static NBAModel instance = null;
@@ -78,5 +82,14 @@ public class NBAModel {
             }
         }
         return null;
+    }
+
+    public void setTeamStanding(Team teamToDisplay) {
+        strategyContext.setStrategy(new StrategyTeamStandings(teamToDisplay.getId()));
+        JSONObject object = strategyContext.executeRequest();
+        JSONObject teamLeagueData = object.getJSONArray("response").getJSONObject(0).getJSONObject("division");
+        teamToDisplay.setRank(teamLeagueData.getInt("rank"));
+        teamToDisplay.addResult(WIN, teamLeagueData.getInt("win"));
+        teamToDisplay.addResult(LOSS, teamLeagueData.getInt("loss"));
     }
 }

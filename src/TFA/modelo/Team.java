@@ -12,8 +12,9 @@ public class Team {
     private String crestUrl;
     // Jugadores del equipo (StrategyTeamPlayers)
     private ArrayList<Player> players;
-    // Posición del equipo (StrategyTeamStandings)
-    private int ranks;
+    // Posición del equipo (StandingTeamStandings)
+    private int rank;
+    HashMap<Result, Integer> results;
     // Estadísticas del equipo (StrategyTeamStats)
     private int gamesPlayed;
     private int points;
@@ -22,7 +23,7 @@ public class Team {
     private float freeThrowsPercentage;
 
     // Partidos del equipo (StrategyGames)
-    HashMap<Result, Integer> results;
+    //private ArrayList<Match> matches;
 
     public Team(int teamId, String fullName, String shortName, String conference, String crestUrl) {
         this.id = teamId;
@@ -38,40 +39,20 @@ public class Team {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getShortName() {
         return shortName;
     }
 
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
-    }
-
     public String getConference() {
         return conference;
     }
 
-    public void setConference(String conference) {
-        this.conference = conference;
-    }
-
     public String getCrestUrl() {
         return crestUrl;
-    }
-
-    public void setCrestUrl(String crestUrl) {
-        this.crestUrl = crestUrl;
     }
 
     public ArrayList<Player> getPlayers() {
@@ -80,5 +61,13 @@ public class Team {
 
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    public void addResult(Result result, int value) {
+        this.results.put(result, value);
     }
 }

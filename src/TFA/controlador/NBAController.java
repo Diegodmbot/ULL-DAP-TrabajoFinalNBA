@@ -29,6 +29,8 @@ public class NBAController {
                 // MODEL
                 // Obtener los jugadores del equipo seleccionado
                 model.setPlayersListFromTeam(teamToDisplay);
+                // Obtener la información sobre la posición del equipo seleccionado
+                model.setTeamStanding(teamToDisplay);
                 // VIEW
                 view.repaint(teamToDisplay);
             } catch (Exception exception) {

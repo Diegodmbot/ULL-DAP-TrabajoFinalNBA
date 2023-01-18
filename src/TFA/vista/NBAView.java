@@ -35,9 +35,7 @@ public class NBAView {
         scrollPlayersList.setPreferredSize(new Dimension(200, 200));
     }
     public void display() {
-        /**
-         *  Panel de cada equipo de la NBA
-         */
+        // Panel para mostrar la información del equipo seleccionado
         GridBagConstraints teamPanelConstraints = new GridBagConstraints();
         teamPanelConstraints.fill = GridBagConstraints.HORIZONTAL;
         teamPanelConstraints.gridx = 0;
@@ -49,10 +47,7 @@ public class NBAView {
         scrollPlayersList.setBorder(BorderFactory.createTitledBorder("Players"));
         teamPanel.add(scrollPlayersList, teamPanelConstraints);
 
-
-        /**
-         * Panel de la ventana principal comun a todos los equipos
-         */
+        //Panel de la ventana principal comun a todos los equipos
         GridBagConstraints mainPanelConstraints = new GridBagConstraints();
         mainPanelConstraints.gridy = 0;
         mainPanelConstraints.insets = new Insets(10, 10, 10, 10);
@@ -89,10 +84,13 @@ public class NBAView {
         JLabel teamConferenceLabel = new JLabel("Conferencia: " + teamToDisplay.getConference());
         GridBagConstraints teamInfoPanelConstraints = new GridBagConstraints();
         teamInfoPanelConstraints.gridy = 0;
+        // add teamNameLabel at the left of the panel
+        teamInfoPanelConstraints.anchor = GridBagConstraints.LINE_START;
         teamInfoPanel.add(teamNameLabel, teamInfoPanelConstraints);
         teamInfoPanelConstraints.gridy = 1;
         teamInfoPanel.add(teamConferenceLabel, teamInfoPanelConstraints);
         teamInfoPanelConstraints.gridy = 2;
+        teamInfoPanelConstraints.anchor = GridBagConstraints.CENTER;
         try {
             URL url = new URL(teamToDisplay.getCrestUrl());
             Image icon = new ImageIcon(url).getImage();
