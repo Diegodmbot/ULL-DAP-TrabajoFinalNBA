@@ -24,9 +24,9 @@ public class NBAController {
                 return;
             }
             try {
-                System.out.println("Equipo: " + teamsComboBox.getSelectedItem());
-                teamToDisplay = model.getTeamByName((String) teamsComboBox.getSelectedItem());
                 // MODEL
+                // Obtener información general del equipo seleccionado
+                teamToDisplay = model.getTeamByName((String) teamsComboBox.getSelectedItem());
                 // Obtener los jugadores del equipo seleccionado
                 model.setPlayersListFromTeam(teamToDisplay);
                 // Obtener la información sobre la posición del equipo seleccionado
@@ -42,8 +42,8 @@ public class NBAController {
     public void setTeamsComboBox(JComboBox<String> teamsComboBox) {
         model.setTeamList();
         teamsComboBox.addItem("");
-        for (Team team : model.getTeamsList()) {
-            teamsComboBox.addItem(team.getName());
+        for (String team : model.getTeamsMap()) {
+            teamsComboBox.addItem(team);
         }
         teamsComboBox.setSelectedIndex(0);
     }

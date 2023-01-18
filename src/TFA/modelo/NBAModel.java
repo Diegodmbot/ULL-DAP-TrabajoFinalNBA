@@ -7,17 +7,18 @@ import TFA.modelo.datafinder.StrategyTeamStandings;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static TFA.modelo.Result.WIN;
 import static TFA.modelo.Result.LOSS;
 
 public class NBAModel {
     private static NBAModel instance = null;
-    private final ArrayList<Team> teamsList;
+    private final HashMap<String, Integer> teamsMap;
     private StrategyContext strategyContext;
 
     private NBAModel() {
-        teamsList = new ArrayList<>();
+        teamsMap = new HashMap<>();
         strategyContext = new StrategyContext();
     }
 
@@ -38,20 +39,13 @@ public class NBAModel {
         for (int i = 0; i < object.getJSONArray("response").length(); i++) {
             JSONObject team = object.getJSONArray("response").getJSONObject(i);
             if (team.getBoolean("nbaFranchise")) {
-                JSONObject teamLeagueData = team.getJSONObject("leagues").getJSONObject("standard");
-                teamsList.add(new Team(
-                        team.getInt("id"),
-                        team.getString("name"),
-                        team.getString("code"),
-                        teamLeagueData.getString("conference"),
-                        team.get("logo").toString()
-                ));
+                teamsMap.put(team.getString("name"), team.getInt("id"));
             }
         }
     }
 
-    public ArrayList<Team> getTeamsList() {
-        return teamsList;
+    public ArrayList<String> getTeamsMap() {
+        return new ArrayList<>(teamsMap.keySet());
     }
 
     // Obtiene la lista de jugadores de un equipo
@@ -76,15 +70,23 @@ public class NBAModel {
     }
 
     public Team getTeamByName(String selectedItem) {
-        for (Team team : teamsList) {
-            if (team.getName().equals(selectedItem)) {
-                return team;
-            }
-        }
-        return null;
+        System.out.println("Obteniendo información general del equipo...");
+        int teamId = teamsMap.get(selectedItem);
+        strategyContext.setStrategy(new StrategyTeam(teamId));
+        JSONObject object = strategyContext.executeRequest();
+        JSONObject team = object.getJSONArray("response").getJSONObject(0);
+        JSONObject teamLeagueData = team.getJSONObject("leagues").getJSONObject("standard");
+        return new Team(
+                team.getInt("id"),
+                team.getString("name"),
+                team.getString("code"),
+                teamLeagueData.getString("conference"),
+                team.get("logo").toString()
+        );
     }
 
     public void setTeamStanding(Team teamToDisplay) {
+        System.out.println("Obteniendo información sobre la posición del equipo...");
         strategyContext.setStrategy(new StrategyTeamStandings(teamToDisplay.getId()));
         JSONObject object = strategyContext.executeRequest();
         JSONObject teamLeagueData = object.getJSONArray("response").getJSONObject(0).getJSONObject("division");

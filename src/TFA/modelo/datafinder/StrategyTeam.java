@@ -5,8 +5,12 @@ import java.net.http.HttpRequest;
 
 public class StrategyTeam extends DataFetcherStrategy {
     final String teamUrl = "/teams?";
+    String teamId = "";
 
     public StrategyTeam() {
+    }
+    public StrategyTeam(int teamId) {
+        this.teamId = "id=" + teamId;
     }
 
     @Override
