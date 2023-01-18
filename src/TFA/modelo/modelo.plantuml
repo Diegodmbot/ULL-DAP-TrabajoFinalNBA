@@ -8,6 +8,8 @@ title __MODELO's Class Diagram__\n
           {static} - instance : NBAModel
           - teamsList : ArrayList<Team>
           {static} + getInstance()
+          + getPlayersListFromTeam()
+          + getTeamByName()
           + getTeamsList()
           + setTeamList()
           - NBAModel()
@@ -20,9 +22,13 @@ title __MODELO's Class Diagram__\n
     namespace modelo {
       class TFA.modelo.Player {
           - id : int
+          - jersey : String
+          - lastName : String
           - name : String
-          - number : int
           - position : String
+          + Player()
+          + printInfo()
+          + toString()
       }
     }
   }

@@ -34,7 +34,14 @@ public class NBAModel {
         for (int i = 0; i < object.getJSONArray("response").length(); i++) {
             JSONObject team = object.getJSONArray("response").getJSONObject(i);
             if (team.getBoolean("nbaFranchise")) {
-                teamsList.add(new Team(team.getInt("id"), team.getString("name"), team.getString("code")));
+                JSONObject teamLeagueData = team.getJSONObject("leagues").getJSONObject("standard");
+                teamsList.add(new Team(
+                        team.getInt("id"),
+                        team.getString("name"),
+                        team.getString("code"),
+                        teamLeagueData.getString("conference"),
+                        team.get("logo").toString()
+                ));
             }
         }
     }
@@ -44,9 +51,9 @@ public class NBAModel {
     }
 
     // Obtiene la lista de jugadores de un equipo
-    public ArrayList<Player> getPlayersListFromTeam(int teamId) {
+    public void setPlayersListFromTeam(Team teamToDisplay) {
         System.out.println("Obteniendo lista de jugadores...");
-        strategyContext.setStrategy(new StrategyTeamPlayers(teamId));
+        strategyContext.setStrategy(new StrategyTeamPlayers(teamToDisplay.getId()));
         JSONObject object = strategyContext.executeRequest();
         ArrayList<Player> playersList = new ArrayList<>();
         JSONObject playerLeagueData;
@@ -61,7 +68,7 @@ public class NBAModel {
                         playerLeagueData.get("jersey").toString()
             ));
         }
-        return playersList;
+        teamToDisplay.setPlayers(playersList);
     }
 
     public Team getTeamByName(String selectedItem) {

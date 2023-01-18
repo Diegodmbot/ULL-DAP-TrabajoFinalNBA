@@ -9,13 +9,6 @@ title __TFA's Class Diagram__\n
   }
   
 
-  namespace TFA {
-    class TFA.PruebasVista {
-        {static} + main()
-    }
-  }
-  
-
 
 
 right footer

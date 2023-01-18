@@ -24,10 +24,12 @@ public class Team {
     // Partidos del equipo (StrategyGames)
     HashMap<Result, Integer> results;
 
-    public Team(int teamId, String fullName, String shortName) {
+    public Team(int teamId, String fullName, String shortName, String conference, String crestUrl) {
         this.id = teamId;
         this.name = fullName;
         this.shortName = shortName;
+        this.conference = conference;
+        this.crestUrl = crestUrl;
         this.players = new ArrayList<>();
         this.results = new HashMap<>();
     }
@@ -70,5 +72,13 @@ public class Team {
 
     public void setCrestUrl(String crestUrl) {
         this.crestUrl = crestUrl;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(ArrayList<Player> players) {
+        this.players = players;
     }
 }

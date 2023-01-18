@@ -13,18 +13,18 @@ public abstract class DataFetcherStrategy {
     // https://api-sports.io/documentation/nba/v2
     // https://rapidapi.com/api-sports/api/api-nba
     final String apiApiSportsUrl = "https://api-nba-v1.p.rapidapi.com";
-    final String TOKEN = "X";
+    final String TOKEN = "beb98c0c7dmsh1e890eea4e48b1dp1f6bf6jsnee9cce3c59cd";
     // Atributos que se usan para la conexion
     HttpRequest request;
 
     public abstract void setRequest();
+
     public JSONObject executeRequest() {
         try {
-
-        setRequest();
-        HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println("Status: " + response.statusCode());
-        return new JSONObject(response.body());
+            setRequest();
+            HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println("Status: " + response.statusCode());
+            return new JSONObject(response.body());
         } catch (Exception e) {
             e.printStackTrace();
             return null;

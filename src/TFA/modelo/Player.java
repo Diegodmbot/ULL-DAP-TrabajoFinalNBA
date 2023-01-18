@@ -1,5 +1,7 @@
 package TFA.modelo;
 
+import java.util.Objects;
+
 public class Player {
     // Datos Generales del Jugador (StrategyPlayer)
     private int id;
@@ -18,7 +20,9 @@ public class Player {
 
     @Override
     public String toString() {
-        return name + " " + lastName + " (" + position + ")" + " #" + jersey;
+        String positionToPrint = !Objects.equals(position, "null") ? position : "N/A";
+        String jerseyToPrint = !Objects.equals(jersey, "null") ? jersey : "N/A";
+        return name + " " + lastName + " (" + positionToPrint + ") " + "#" + jerseyToPrint;
     }
 
     public void printInfo() {

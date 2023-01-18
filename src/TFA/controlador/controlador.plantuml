@@ -6,14 +6,15 @@ title __CONTROLADOR's Class Diagram__\n
     namespace controlador {
       class TFA.controlador.NBAController {
           + NBAController()
-          + getView()
+          + addActionListenerToTeamsBox()
+          + setTeamsComboBox()
       }
     }
   }
   
 
   TFA.controlador.NBAController o-- TFA.modelo.NBAModel : model
-  TFA.controlador.NBAController o-- TFA.modelo.datafinder.StrategyContext : strategyContext
+  TFA.controlador.NBAController o-- TFA.modelo.Team : teamToDisplay
   TFA.controlador.NBAController o-- TFA.vista.NBAView : view
 
 

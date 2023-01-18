@@ -24,12 +24,13 @@ public class NBAController {
                 return;
             }
             try {
-                // TODO Obtener las estadísticas del equipo seleccionado
-                // Obtener los jugadores del equipo seleccionado
                 System.out.println("Equipo: " + teamsComboBox.getSelectedItem());
                 teamToDisplay = model.getTeamByName((String) teamsComboBox.getSelectedItem());
-                view.updatePlayersList(model.getPlayersListFromTeam(teamToDisplay.getId()));
-
+                // MODEL
+                // Obtener los jugadores del equipo seleccionado
+                model.setPlayersListFromTeam(teamToDisplay);
+                // VIEW
+                view.repaint(teamToDisplay);
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
@@ -44,4 +45,5 @@ public class NBAController {
         }
         teamsComboBox.setSelectedIndex(0);
     }
+
 }

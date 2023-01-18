@@ -6,11 +6,12 @@ public class PruebaModel {
         public static void main(String[] args) {
             NBAModel model = NBAModel.getInstance();
             try {
+                System.out.println("Hola");
                 // model.setTeamList();
-                ArrayList<Player> players = model.getPlayersListFromTeam(2);
-                for (Player player : players) {
-                    player.printInfo();
-                }
+                //ArrayList<Player> players = model.setPlayersListFromTeam(2);
+//                for (Player player : players) {
+//                    player.printInfo();
+                //}
             } catch (Exception e) {
                 e.printStackTrace();
             }

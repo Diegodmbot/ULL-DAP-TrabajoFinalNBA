@@ -18,6 +18,15 @@ title __DATAFINDER's Class Diagram__\n
   }
   
 
+  namespace TFA {
+    namespace modelo {
+      namespace datafinder {
+        class TFA.modelo.datafinder.PruebaDataFetcher {
+            {static} + main()
+        }
+      }
+    }
+  }
   
 
   namespace TFA {

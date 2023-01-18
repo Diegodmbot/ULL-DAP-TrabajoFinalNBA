@@ -9,12 +9,6 @@ title __TFA-DAP's Class Diagram__\n
   
 
   namespace TFA {
-    class TFA.PruebasVista {
-    }
-  }
-  
-
-  namespace TFA {
     namespace controlador {
       class TFA.controlador.NBAController {
       }
@@ -160,8 +154,16 @@ title __TFA-DAP's Class Diagram__\n
   }
   
 
+  namespace TFA {
+    namespace vista {
+      class TFA.vista.PruebasVista {
+      }
+    }
+  }
+  
+
   TFA.controlador.NBAController o-- TFA.modelo.NBAModel : model
-  TFA.controlador.NBAController o-- TFA.modelo.datafinder.StrategyContext : strategyContext
+  TFA.controlador.NBAController o-- TFA.modelo.Team : teamToDisplay
   TFA.controlador.NBAController o-- TFA.vista.NBAView : view
   TFA.modelo.NBAModel o-- TFA.modelo.datafinder.StrategyContext : strategyContext
   TFA.modelo.datafinder.StrategyContext o-- TFA.modelo.datafinder.DataFetcherStrategy : strategy

@@ -8,10 +8,23 @@ title __VISTA's Class Diagram__\n
           - frame : JFrame
           - infoLabel : JLabel
           - mainPanel : JPanel
+          - playersList : JList<String>
+          - scrollPlayersList : JScrollPane
+          - teamPanel : JPanel
           - teamsComboBox : JComboBox<String>
           + NBAView()
           + display()
-          - setTeamsComboBox()
+          + setController()
+          + updatePlayersList()
+      }
+    }
+  }
+  
+
+  namespace TFA {
+    namespace vista {
+      class TFA.vista.PruebasVista {
+          {static} + main()
       }
     }
   }
