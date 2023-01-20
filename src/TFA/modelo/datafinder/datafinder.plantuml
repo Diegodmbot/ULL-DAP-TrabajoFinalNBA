@@ -75,7 +75,9 @@ title __DATAFINDER's Class Diagram__\n
     namespace modelo {
       namespace datafinder {
         class TFA.modelo.datafinder.StrategyTeam {
+            ~ teamId : String
             ~ teamUrl : String
+            + StrategyTeam()
             + StrategyTeam()
             + setRequest()
         }

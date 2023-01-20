@@ -6,12 +6,13 @@ title __MODELO's Class Diagram__\n
     namespace modelo {
       class TFA.modelo.NBAModel {
           {static} - instance : NBAModel
-          - teamsList : ArrayList<Team>
+          - teamsMap : HashMap<String, Integer>
           {static} + getInstance()
-          + getPlayersListFromTeam()
           + getTeamByName()
           + getTeamsList()
+          + setPlayersListFromTeam()
           + setTeamList()
+          + setTeamStanding()
           - NBAModel()
       }
     }
@@ -46,7 +47,7 @@ title __MODELO's Class Diagram__\n
   namespace TFA {
     namespace modelo {
       enum Result {
-        LOSE
+        LOSS
         WIN
       }
     }
@@ -59,27 +60,34 @@ title __MODELO's Class Diagram__\n
           ~ results : HashMap<Result, Integer>
           - conference : String
           - crestUrl : String
-          - fieldGoalsPercentage : float
-          - freeThrowsPercentage : float
+          - defensiveRebounds : int
+          - fieldGoalsAttempted : int
+          - fieldGoalsMade : int
+          - freeThrowsAttempted : int
+          - freeThrowsMade : int
           - gamesPlayed : int
           - id : int
           - name : String
+          - offensiveRebounds : int
           - players : ArrayList<Player>
           - points : int
-          - ranks : int
+          - rank : int
           - shortName : String
-          - threePointsPercentage : float
+          - steals : int
+          - threePointsAttempted : int
+          - threePointsMade : int
+          - totalRebounds : int
+          - turnovers : int
           + Team()
+          + addResult()
           + getConference()
           + getCrestUrl()
           + getId()
           + getName()
+          + getPlayers()
           + getShortName()
-          + setConference()
-          + setCrestUrl()
-          + setId()
-          + setName()
-          + setShortName()
+          + setPlayers()
+          + setRank()
       }
     }
   }

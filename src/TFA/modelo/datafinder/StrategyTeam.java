@@ -10,14 +10,14 @@ public class StrategyTeam extends DataFetcherStrategy {
     public StrategyTeam() {
     }
     public StrategyTeam(int teamId) {
-        this.teamId = "id=" + teamId;
+        this.teamId += "id=" + teamId;
     }
 
     @Override
     public void setRequest() {
         request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create(apiApiSportsUrl + teamUrl))
+                .uri(URI.create(apiApiSportsUrl + teamUrl + teamId))
                 .header("X-RapidAPI-Key", TOKEN)
                 .build();
     }

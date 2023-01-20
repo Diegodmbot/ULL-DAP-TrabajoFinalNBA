@@ -3,6 +3,7 @@ package TFA.modelo;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 public class Team {
     // Datos generales del equipo (StrategyTeam)
     private int id;
@@ -14,13 +15,11 @@ public class Team {
     private ArrayList<Player> players;
     // Posición del equipo (StandingTeamStandings)
     private int rank;
-    HashMap<Result, Integer> results;
+    HashMap<String, Integer> results;
     // Estadísticas del equipo (StrategyTeamStats)
-    private int gamesPlayed;
-    private int points;
-    private float fieldGoalsPercentage;
-    private float threePointsPercentage;
-    private float freeThrowsPercentage;
+    // Guarda todas las estadisiticas del equipo
+    // puntos, tiros de campo, triples, tiros libres, rebotes, robos, pérdidas
+    private HashMap<String, Integer> teamStats;
 
     // Partidos del equipo (StrategyGames)
     //private ArrayList<Match> matches;
@@ -33,6 +32,7 @@ public class Team {
         this.crestUrl = crestUrl;
         this.players = new ArrayList<>();
         this.results = new HashMap<>();
+        this.teamStats = new HashMap<>();
     }
 
     public int getId() {
@@ -58,6 +58,10 @@ public class Team {
     public ArrayList<Player> getPlayers() {
         return players;
     }
+    // Getters para mostrar las estadísticas del equipo
+    public HashMap<String, Integer> getTeamResults() {
+        return results;
+    }
 
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
@@ -67,7 +71,11 @@ public class Team {
         this.rank = rank;
     }
 
-    public void addResult(Result result, int value) {
+    public void addResult(String result, int value) {
         this.results.put(result, value);
+    }
+
+    public void addTeamStats(String stat, int value) {
+        this.teamStats.put(stat, value);
     }
 }

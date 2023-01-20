@@ -1,16 +1,10 @@
 package TFA.modelo;
 
-import TFA.modelo.datafinder.StrategyContext;
-import TFA.modelo.datafinder.StrategyTeam;
-import TFA.modelo.datafinder.StrategyTeamPlayers;
-import TFA.modelo.datafinder.StrategyTeamStandings;
+import TFA.modelo.datafinder.*;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import static TFA.modelo.Result.WIN;
-import static TFA.modelo.Result.LOSS;
 
 public class NBAModel {
     private static NBAModel instance = null;
@@ -44,7 +38,7 @@ public class NBAModel {
         }
     }
 
-    public ArrayList<String> getTeamsMap() {
+    public ArrayList<String> getTeamsList() {
         return new ArrayList<>(teamsMap.keySet());
     }
 
@@ -73,14 +67,15 @@ public class NBAModel {
         System.out.println("Obteniendo información general del equipo...");
         int teamId = teamsMap.get(selectedItem);
         strategyContext.setStrategy(new StrategyTeam(teamId));
+//        System.out.println(strategyContext.get);
         JSONObject object = strategyContext.executeRequest();
         JSONObject team = object.getJSONArray("response").getJSONObject(0);
-        JSONObject teamLeagueData = team.getJSONObject("leagues").getJSONObject("standard");
+        JSONObject teamLocation = team.getJSONObject("leagues").getJSONObject("standard");
         return new Team(
                 team.getInt("id"),
                 team.getString("name"),
                 team.getString("code"),
-                teamLeagueData.getString("conference"),
+                teamLocation.getString("conference"),
                 team.get("logo").toString()
         );
     }
@@ -91,7 +86,32 @@ public class NBAModel {
         JSONObject object = strategyContext.executeRequest();
         JSONObject teamLeagueData = object.getJSONArray("response").getJSONObject(0).getJSONObject("division");
         teamToDisplay.setRank(teamLeagueData.getInt("rank"));
-        teamToDisplay.addResult(WIN, teamLeagueData.getInt("win"));
-        teamToDisplay.addResult(LOSS, teamLeagueData.getInt("loss"));
+        teamToDisplay.addResult("win", teamLeagueData.getInt("win"));
+        teamToDisplay.addResult("loss", teamLeagueData.getInt("loss"));
+    }
+
+    public void setTeamStats(Team teamToDisplay) {
+        System.out.println("Obteniendo estadísticas del equipo...");
+        strategyContext.setStrategy(new StrategyTeamStats(teamToDisplay.getId()));
+        JSONObject object = strategyContext.executeRequest();
+        JSONObject teamStats = object.getJSONArray("response").getJSONObject(0);
+        // puntos
+        teamToDisplay.addTeamStats("points", teamStats.getInt("points"));
+        // tiros de campo
+        teamToDisplay.addTeamStats("fga", teamStats.getInt("fga"));
+        teamToDisplay.addTeamStats("fgm", teamStats.getInt("fgm"));
+        // tiros de 3
+        teamToDisplay.addTeamStats("tpa", teamStats.getInt("tpa"));
+        teamToDisplay.addTeamStats("tpm", teamStats.getInt("tpm"));
+        // tiros libres
+        teamToDisplay.addTeamStats("fta", teamStats.getInt("fta"));
+        teamToDisplay.addTeamStats("ftm", teamStats.getInt("ftm"));
+        // rebotes
+        teamToDisplay.addTeamStats("offReb", teamStats.getInt("offReb"));
+        teamToDisplay.addTeamStats("defReb", teamStats.getInt("defReb"));
+        // robos
+        teamToDisplay.addTeamStats("steals", teamStats.getInt("steals"));
+        // perdidas
+        teamToDisplay.addTeamStats("turnovers", teamStats.getInt("turnovers"));
     }
 }

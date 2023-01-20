@@ -10,11 +10,14 @@ title __VISTA's Class Diagram__\n
           - mainPanel : JPanel
           - playersList : JList<String>
           - scrollPlayersList : JScrollPane
+          - teamInfoPanel : JPanel
           - teamPanel : JPanel
           - teamsComboBox : JComboBox<String>
           + NBAView()
           + display()
+          + repaint()
           + setController()
+          + showTeamInfo()
           + updatePlayersList()
       }
     }
