@@ -24,6 +24,9 @@ public abstract class DataFetcherStrategy {
             setRequest();
             HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             System.out.println("Status: " + response.statusCode());
+            if (response.statusCode() != 200) {
+                throw new Exception("Error al obtener los datos");
+            }
             return new JSONObject(response.body());
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,9 +1,10 @@
 package TFA.vista;
 
+import TFA.controlador.ButtonFactory.ButtonCreator;
 import TFA.controlador.NBAController;
 import TFA.modelo.Player;
 import TFA.modelo.Team;
-import org.jfree.chart.ChartPanel;
+import TFA.vista.Chart.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +14,6 @@ import java.util.HashMap;
 
 public class NBAView {
     private JFrame teamFrame;
-    private HashMap<String, JFrame> chartsFrames;
     // Panel que muestra la información general del programa
     private JPanel mainPanel;
     private JComboBox<String> teamsComboBox;
@@ -26,16 +26,17 @@ public class NBAView {
     private JScrollPane scrollPlayersList;
     // Panel que muestra graficas de las estadisticas de los equipos
     private JPanel teamStatsPanel;
+    // Paneles que muestran las estadisticas del equipo seleccionado
+    private HashMap<String, JFrame> chartsFrames;
 
     // Botones para mostrar las graficas
-    // Raking: Muestra el ranking del equipo y sus victorias y derrotas
+    // Win/Loss: Muestra las victorias y derrotas del equipo
     // fieldGoals: Muestra el porcentaje de tiros de campo, ademas de los tiros de campo realizados y acertados
     // threePoints: Muestra el porcentaje de tiros de 3 puntos, ademas de los tiros de 3 puntos realizados y acertados
     // freeThrows: Muestra el porcentaje de tiros libres, ademas de los tiros libres realizados y acertados
     // rebounds: Muestra los rebotes totales, ademas de los rebotes ofensivos y defensivos
     // stealsTurnovers: Muestra los robos y perdidas de balon
-    private JButton rankingButton, fieldGoalsButton, threePointsButton, freeThrowsButton, reboundsButton, stealsTurnoversButton;
-
+    private ArrayList<ButtonCreator> buttons;
 
     public NBAView() {
         teamFrame = new JFrame("NBA");
@@ -51,12 +52,7 @@ public class NBAView {
         playersList = new JList<>();
         scrollPlayersList = new JScrollPane(playersList);
         scrollPlayersList.setPreferredSize(new Dimension(200, 200));
-        rankingButton = new JButton("Ranking");
-        fieldGoalsButton = new JButton("Field Goals");
-        threePointsButton = new JButton("Three Points");
-        freeThrowsButton = new JButton("Free Throws");
-        reboundsButton = new JButton("Rebounds");
-        stealsTurnoversButton = new JButton("Steals & Turnovers");
+        buttons = new ArrayList<>();
     }
 
     public void display() {
@@ -78,15 +74,11 @@ public class NBAView {
         teamStatsPanel.setBorder(BorderFactory.createTitledBorder("Team Stats"));
         teamStatsPanel.setVisible(false);
         GridBagConstraints teamStatsPanelConstraints = new GridBagConstraints();
-        teamStatsPanelConstraints.gridx = 0;
         teamStatsPanelConstraints.insets = new Insets(5, 5, 5, 10);
-        teamStatsPanel.add(rankingButton, teamStatsPanelConstraints);
-        teamStatsPanel.add(fieldGoalsButton, teamStatsPanelConstraints);
-        teamStatsPanel.add(threePointsButton, teamStatsPanelConstraints);
-        teamStatsPanelConstraints.gridx = 1;
-        teamStatsPanel.add(freeThrowsButton, teamStatsPanelConstraints);
-        teamStatsPanel.add(reboundsButton, teamStatsPanelConstraints);
-        teamStatsPanel.add(stealsTurnoversButton, teamStatsPanelConstraints);
+        for (int i = 0; i < buttons.size(); i++) {
+            teamStatsPanelConstraints.gridy = (i + 1) % 3;
+            teamStatsPanel.add(buttons.get(i).getButton(), teamStatsPanelConstraints);
+        }
         teamPanelConstraints.gridx = 2;
         teamPlayerPanel.add(teamStatsPanel, teamPanelConstraints);
 
@@ -111,12 +103,7 @@ public class NBAView {
     public void setController(NBAController controller) {
         controller.setTeamsComboBox(teamsComboBox);
         controller.addActionListenerToTeamsBox(teamsComboBox);
-        controller.addActionListenerToButtons(rankingButton);
-        controller.addActionListenerToButtons(fieldGoalsButton);
-        controller.addActionListenerToButtons(threePointsButton);
-        controller.addActionListenerToButtons(freeThrowsButton);
-        controller.addActionListenerToButtons(reboundsButton);
-        controller.addActionListenerToButtons(stealsTurnoversButton);
+        controller.createButtons(buttons);
     }
 
     public void updatePlayersList(ArrayList<Player> players) {
@@ -131,6 +118,7 @@ public class NBAView {
         teamInfoPanel.removeAll();
         JLabel teamNameLabel = new JLabel("Nombre: " + teamToDisplay.getName() + " (" + teamToDisplay.getShortName() + ")");
         JLabel teamConferenceLabel = new JLabel("Conferencia: " + teamToDisplay.getConference());
+        JLabel teamRankingLabel = new JLabel("Ranking: " + teamToDisplay.getRanking());
         GridBagConstraints teamInfoPanelConstraints = new GridBagConstraints();
         teamInfoPanelConstraints.gridy = 0;
         // add teamNameLabel at the left of the panel
@@ -139,6 +127,8 @@ public class NBAView {
         teamInfoPanelConstraints.gridy = 1;
         teamInfoPanel.add(teamConferenceLabel, teamInfoPanelConstraints);
         teamInfoPanelConstraints.gridy = 2;
+        teamInfoPanel.add(teamRankingLabel, teamInfoPanelConstraints);
+        teamInfoPanelConstraints.gridy = 3;
         teamInfoPanelConstraints.anchor = GridBagConstraints.CENTER;
         try {
             URL url = new URL(teamToDisplay.getCrestUrl());
@@ -163,7 +153,7 @@ public class NBAView {
         teamFrame.repaint();
     }
 
-    public void displayChart(String chartName, HashMap<String, Integer> data) {
+    public void displayPieChart(String chartName, HashMap<String, Integer> data) {
         JFrame chartFrame = new JFrame(chartName);
         chartFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         chartFrame.setSize(500, 500);
@@ -172,5 +162,22 @@ public class NBAView {
         pieChart.createChart();
         chartFrame.add(pieChart.drawChart());
         chartsFrames.put(chartName, chartFrame);
+    }
+
+    public void displayBarChart(String chartName, HashMap<String, Integer> data) {
+        JFrame chartFrame = new JFrame(chartName);
+        chartFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        chartFrame.setSize(500, 500);
+        chartFrame.setVisible(true);
+        Chart barChart = new BarChart(chartName, data);
+        barChart.createChart();
+        chartFrame.add(barChart.drawChart());
+        chartsFrames.put(chartName, chartFrame);
+    }
+
+    public void updateButtons(Team teamToDisplay) {
+        for (ButtonCreator button : buttons) {
+            button.operate(teamToDisplay, this);
+        }
     }
 }

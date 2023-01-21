@@ -21,8 +21,11 @@ public class Team {
     // puntos, tiros de campo, triples, tiros libres, rebotes, robos, pérdidas
     private HashMap<String, Integer> teamStats;
 
-    // Partidos del equipo (StrategyGames)
-    //private ArrayList<Match> matches;
+    public Team() {
+        this.players = new ArrayList<>();
+        this.results = new HashMap<>();
+        this.teamStats = new HashMap<>();
+    }
 
     public Team(int teamId, String fullName, String shortName, String conference, String crestUrl) {
         this.id = teamId;
@@ -77,5 +80,44 @@ public class Team {
 
     public void addTeamStats(String stat, int value) {
         this.teamStats.put(stat, value);
+    }
+
+    public String getRanking() {
+        return rank + "º";
+    }
+
+    public HashMap<String, Integer> getTeamFG() {
+        HashMap<String, Integer> fg = new HashMap<>();
+        fg.put("fgm", teamStats.get("fgm"));
+        fg.put("fga", teamStats.get("fga"));
+        return fg;
+    }
+
+    public HashMap<String, Integer> getTeamTP() {
+        HashMap<String, Integer> tp = new HashMap<>();
+        tp.put("tpm", teamStats.get("tpm"));
+        tp.put("tpa", teamStats.get("tpa"));
+        return tp;
+    }
+
+    public HashMap<String, Integer> getTeamFT() {
+        HashMap<String, Integer> ft = new HashMap<>();
+        ft.put("ftm", teamStats.get("ftm"));
+        ft.put("fta", teamStats.get("fta"));
+        return ft;
+    }
+
+    public HashMap<String, Integer> getTeamRebounds() {
+        HashMap<String, Integer> rebounds = new HashMap<>();
+        rebounds.put("offReb", teamStats.get("offReb"));
+        rebounds.put("defReb", teamStats.get("defReb"));
+        return rebounds;
+    }
+
+    public HashMap<String, Integer> getTeamStealTurnovers() {
+        HashMap<String, Integer> stealsTurnover = new HashMap<>();
+        stealsTurnover.put("steals", teamStats.get("steals"));
+        stealsTurnover.put("turnovers", teamStats.get("turnovers"));
+        return stealsTurnover;
     }
 }

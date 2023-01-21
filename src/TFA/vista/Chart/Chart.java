@@ -1,4 +1,4 @@
-package TFA.vista;
+package TFA.vista.Chart;
 
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;

@@ -32,7 +32,7 @@ public class NBAModel {
         // Recorre el array de equipos y selecciona los equipos de la NBA
         for (int i = 0; i < object.getJSONArray("response").length(); i++) {
             JSONObject team = object.getJSONArray("response").getJSONObject(i);
-            if (team.getBoolean("nbaFranchise")) {
+            if (team.getBoolean("nbaFranchise") && !team.getBoolean("allStar")) {
                 teamsMap.put(team.getString("name"), team.getInt("id"));
             }
         }
@@ -84,7 +84,7 @@ public class NBAModel {
         System.out.println("Obteniendo información sobre la posición del equipo...");
         strategyContext.setStrategy(new StrategyTeamStandings(teamToDisplay.getId()));
         JSONObject object = strategyContext.executeRequest();
-        JSONObject teamLeagueData = object.getJSONArray("response").getJSONObject(0).getJSONObject("division");
+        JSONObject teamLeagueData = object.getJSONArray("response").getJSONObject(0).getJSONObject("conference");
         teamToDisplay.setRank(teamLeagueData.getInt("rank"));
         teamToDisplay.addResult("win", teamLeagueData.getInt("win"));
         teamToDisplay.addResult("loss", teamLeagueData.getInt("loss"));
