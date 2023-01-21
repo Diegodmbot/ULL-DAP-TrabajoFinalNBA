@@ -11,7 +11,7 @@ public class FGButton implements Button {
     public void onClick(Team team, NBAView view, JButton button) {
         button.setText("FG%");
         button.addActionListener(e -> {
-            view.displayBarChart("Tiros de Campo", team.getTeamFG());
+            view.displayBarChart("Tiros de Campo", team.getTeamStats("fgm", "fga"));
         });
     }
 }

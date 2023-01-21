@@ -5,34 +5,31 @@ title __VISTA's Class Diagram__\n
   namespace TFA {
     namespace vista {
       class TFA.vista.NBAView {
-          - frame : JFrame
+          - buttons : ArrayList<ButtonCreator>
+          - chartsFrames : HashMap<String, JFrame>
           - infoLabel : JLabel
           - mainPanel : JPanel
           - playersList : JList<String>
           - scrollPlayersList : JScrollPane
+          - teamFrame : JFrame
           - teamInfoPanel : JPanel
-          - teamPanel : JPanel
+          - teamPlayerPanel : JPanel
+          - teamStatsPanel : JPanel
           - teamsComboBox : JComboBox<String>
           + NBAView()
           + display()
+          + displayBarChart()
+          + displayPieChart()
+          + getButtons()
           + repaint()
           + setController()
-          + showTeamInfo()
           + updatePlayersList()
+          - showTeamInfo()
       }
     }
   }
   
-
-  namespace TFA {
-    namespace vista {
-      class TFA.vista.PruebasVista {
-          {static} + main()
-      }
-    }
-  }
-  
-
+TFA.vista.NBAView o.. TFA.vista.ButtonCreator : buttons
 
 
 right footer

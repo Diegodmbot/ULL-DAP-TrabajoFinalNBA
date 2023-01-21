@@ -1,17 +1,12 @@
 @startuml
 
-title __TFA-DAP's Class Diagram__\n
-
-  namespace TFA {
-    class TFA.Client {
-    }
-  }
-  
+title __BUTTONFACTORY's Class Diagram__\n
 
   namespace TFA {
     namespace controlador {
       namespace ButtonFactory {
         interface TFA.controlador.ButtonFactory.Button {
+            {abstract} + onClick()
         }
       }
     }
@@ -22,6 +17,11 @@ title __TFA-DAP's Class Diagram__\n
     namespace controlador {
       namespace ButtonFactory {
         abstract class TFA.controlador.ButtonFactory.ButtonCreator {
+            - buttonComponent : JButton
+            + ButtonCreator()
+            {abstract} + createButton()
+            + getButton()
+            + operate()
         }
       }
     }
@@ -32,6 +32,7 @@ title __TFA-DAP's Class Diagram__\n
     namespace controlador {
       namespace ButtonFactory {
         class TFA.controlador.ButtonFactory.FGButton {
+            + onClick()
         }
       }
     }
@@ -42,6 +43,7 @@ title __TFA-DAP's Class Diagram__\n
     namespace controlador {
       namespace ButtonFactory {
         class TFA.controlador.ButtonFactory.FGButtonCreator {
+            + createButton()
         }
       }
     }
@@ -52,6 +54,7 @@ title __TFA-DAP's Class Diagram__\n
     namespace controlador {
       namespace ButtonFactory {
         class TFA.controlador.ButtonFactory.FTButton {
+            + onClick()
         }
       }
     }
@@ -62,6 +65,7 @@ title __TFA-DAP's Class Diagram__\n
     namespace controlador {
       namespace ButtonFactory {
         class TFA.controlador.ButtonFactory.FTButtonCreator {
+            + createButton()
         }
       }
     }
@@ -72,6 +76,7 @@ title __TFA-DAP's Class Diagram__\n
     namespace controlador {
       namespace ButtonFactory {
         class TFA.controlador.ButtonFactory.ReboundsButton {
+            + onClick()
         }
       }
     }
@@ -82,6 +87,7 @@ title __TFA-DAP's Class Diagram__\n
     namespace controlador {
       namespace ButtonFactory {
         class TFA.controlador.ButtonFactory.ReboundsButtonCreator {
+            + createButton()
         }
       }
     }
@@ -92,6 +98,7 @@ title __TFA-DAP's Class Diagram__\n
     namespace controlador {
       namespace ButtonFactory {
         class TFA.controlador.ButtonFactory.StealsTurnoverButton {
+            + onClick()
         }
       }
     }
@@ -102,6 +109,7 @@ title __TFA-DAP's Class Diagram__\n
     namespace controlador {
       namespace ButtonFactory {
         class TFA.controlador.ButtonFactory.StealsTurnoversButtonCreator {
+            + createButton()
         }
       }
     }
@@ -112,6 +120,7 @@ title __TFA-DAP's Class Diagram__\n
     namespace controlador {
       namespace ButtonFactory {
         class TFA.controlador.ButtonFactory.TPButton {
+            + onClick()
         }
       }
     }
@@ -122,6 +131,7 @@ title __TFA-DAP's Class Diagram__\n
     namespace controlador {
       namespace ButtonFactory {
         class TFA.controlador.ButtonFactory.TPButtonCreator {
+            + createButton()
         }
       }
     }
@@ -132,6 +142,7 @@ title __TFA-DAP's Class Diagram__\n
     namespace controlador {
       namespace ButtonFactory {
         class TFA.controlador.ButtonFactory.WinLossButton {
+            + onClick()
         }
       }
     }
@@ -142,151 +153,12 @@ title __TFA-DAP's Class Diagram__\n
     namespace controlador {
       namespace ButtonFactory {
         class TFA.controlador.ButtonFactory.WinLossButtonCreator {
+            + createButton()
         }
       }
     }
   }
-  
 
-  namespace TFA {
-    namespace controlador {
-      class TFA.controlador.NBAController {
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace modelo {
-      class TFA.modelo.NBAModel {
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace modelo {
-      class TFA.modelo.Player {
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace modelo {
-      class TFA.modelo.Team {
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace modelo {
-      namespace datafinder {
-        abstract class TFA.modelo.datafinder.DataFetcherStrategy {
-        }
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace modelo {
-      namespace datafinder {
-        class TFA.modelo.datafinder.StrategyContext {
-        }
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace modelo {
-      namespace datafinder {
-        class TFA.modelo.datafinder.StrategyPlayer {
-        }
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace modelo {
-      namespace datafinder {
-        class TFA.modelo.datafinder.StrategyTeam {
-        }
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace modelo {
-      namespace datafinder {
-        class TFA.modelo.datafinder.StrategyTeamPlayers {
-        }
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace modelo {
-      namespace datafinder {
-        class TFA.modelo.datafinder.StrategyTeamStandings {
-        }
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace modelo {
-      namespace datafinder {
-        class TFA.modelo.datafinder.StrategyTeamStats {
-        }
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace vista {
-      namespace Chart {
-        class TFA.vista.Chart.BarChart {
-        }
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace vista {
-      namespace Chart {
-        abstract class TFA.vista.Chart.Chart {
-        }
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace vista {
-      namespace Chart {
-        class TFA.vista.Chart.PieChart {
-        }
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace vista {
-      class TFA.vista.NBAView {
-      }
-    }
-  }
-  
 
   TFA.controlador.ButtonFactory.FGButton .up.|> TFA.controlador.ButtonFactory.Button
   TFA.controlador.ButtonFactory.FGButtonCreator -up-|> TFA.controlador.ButtonFactory.ButtonCreator
@@ -300,19 +172,8 @@ title __TFA-DAP's Class Diagram__\n
   TFA.controlador.ButtonFactory.TPButtonCreator -up-|> TFA.controlador.ButtonFactory.ButtonCreator
   TFA.controlador.ButtonFactory.WinLossButton .up.|> TFA.controlador.ButtonFactory.Button
   TFA.controlador.ButtonFactory.WinLossButtonCreator -up-|> TFA.controlador.ButtonFactory.ButtonCreator
-  TFA.controlador.NBAController o-- TFA.modelo.NBAModel : model
-  TFA.controlador.NBAController o-- TFA.modelo.Team : teamToDisplay
-  TFA.controlador.NBAController o-- TFA.vista.NBAView : view
-  TFA.modelo.NBAModel o-- TFA.modelo.datafinder.StrategyContext : strategyContext
-  TFA.modelo.datafinder.StrategyContext o-- TFA.modelo.datafinder.DataFetcherStrategy : strategy
-  TFA.modelo.datafinder.StrategyPlayer -up-|> TFA.modelo.datafinder.DataFetcherStrategy
-  TFA.modelo.datafinder.StrategyTeam -up-|> TFA.modelo.datafinder.DataFetcherStrategy
-  TFA.modelo.datafinder.StrategyTeamPlayers -up-|> TFA.modelo.datafinder.DataFetcherStrategy
-  TFA.modelo.datafinder.StrategyTeamStandings -up-|> TFA.modelo.datafinder.DataFetcherStrategy
-  TFA.modelo.datafinder.StrategyTeamStats -up-|> TFA.modelo.datafinder.DataFetcherStrategy
-  TFA.vista.Chart.BarChart -up-|> TFA.vista.Chart.Chart
-  TFA.vista.Chart.PieChart -up-|> TFA.vista.Chart.Chart
 
+    TFA.controlador.ButtonFactory.ButtonCreator ..> TFA.controlador.ButtonFactory.Button
 
 right footer
 

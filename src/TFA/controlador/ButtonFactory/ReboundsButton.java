@@ -10,7 +10,7 @@ public class ReboundsButton implements Button {
     public void onClick(Team team, NBAView view, JButton button) {
         button.setText("Rebotes");
         button.addActionListener(e -> {
-            view.displayPieChart("Rebotes", team.getTeamRebounds());
+            view.displayPieChart("Rebotes", team.getTeamStats("defReb", "offReb"));
         });
     }
 }

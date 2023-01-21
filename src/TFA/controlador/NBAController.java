@@ -48,7 +48,7 @@ public class NBAController {
                 // Obtener las estadísticas del equipo seleccionado
                 model.setTeamStats(teamToDisplay);
                 // VIEW
-                view.updateButtons(teamToDisplay);
+                addActionListenerToButtons(view.getButtons());
                 view.repaint(teamToDisplay);
             } catch (Exception exception) {
                 exception.printStackTrace();
@@ -63,5 +63,11 @@ public class NBAController {
         buttons.add(new FGButtonCreator());
         buttons.add(new TPButtonCreator());
         buttons.add(new FTButtonCreator());
+    }
+
+    public void addActionListenerToButtons(ArrayList<ButtonCreator> buttons) {
+        for (ButtonCreator button : buttons) {
+            button.operate(teamToDisplay, this.view);
+        }
     }
 }

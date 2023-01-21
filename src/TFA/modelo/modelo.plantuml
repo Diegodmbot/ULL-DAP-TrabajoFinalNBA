@@ -13,6 +13,7 @@ title __MODELO's Class Diagram__\n
           + setPlayersListFromTeam()
           + setTeamList()
           + setTeamStanding()
+          + setTeamStats()
           - NBAModel()
       }
     }
@@ -28,7 +29,6 @@ title __MODELO's Class Diagram__\n
           - name : String
           - position : String
           + Player()
-          + printInfo()
           + toString()
       }
     }
@@ -37,55 +37,29 @@ title __MODELO's Class Diagram__\n
 
   namespace TFA {
     namespace modelo {
-      class TFA.modelo.PruebaModel {
-          {static} + main()
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace modelo {
-      enum Result {
-        LOSS
-        WIN
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace modelo {
       class TFA.modelo.Team {
-          ~ results : HashMap<Result, Integer>
+          ~ results : HashMap<String, Integer>
           - conference : String
           - crestUrl : String
-          - defensiveRebounds : int
-          - fieldGoalsAttempted : int
-          - fieldGoalsMade : int
-          - freeThrowsAttempted : int
-          - freeThrowsMade : int
-          - gamesPlayed : int
           - id : int
           - name : String
-          - offensiveRebounds : int
           - players : ArrayList<Player>
-          - points : int
           - rank : int
           - shortName : String
-          - steals : int
-          - threePointsAttempted : int
-          - threePointsMade : int
-          - totalRebounds : int
-          - turnovers : int
+          - teamStats : HashMap<String, Integer>
+          + Team()
           + Team()
           + addResult()
+          + addTeamStats()
           + getConference()
           + getCrestUrl()
           + getId()
           + getName()
           + getPlayers()
+          + getRanking()
           + getShortName()
+          + getTeamResults()
+          + getTeamStats()
           + setPlayers()
           + setRank()
       }
@@ -94,6 +68,8 @@ title __MODELO's Class Diagram__\n
   
 
   TFA.modelo.NBAModel o-- TFA.modelo.datafinder.StrategyContext : strategyContext
+  TFA.modelo.Team o-- TFA.modelo.Player : players
+    TFA.modelo.NBAModel o-- TFA.modelo.Team : teamsMap
 
 
 right footer

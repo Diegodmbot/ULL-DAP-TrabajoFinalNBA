@@ -6,7 +6,9 @@ title __CONTROLADOR's Class Diagram__\n
     namespace controlador {
       class TFA.controlador.NBAController {
           + NBAController()
+          + addActionListenerToButtons()
           + addActionListenerToTeamsBox()
+          + createButtons()
           + setTeamsComboBox()
       }
     }

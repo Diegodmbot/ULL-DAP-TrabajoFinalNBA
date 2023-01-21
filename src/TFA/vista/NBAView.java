@@ -70,7 +70,7 @@ public class NBAView {
         teamPanelConstraints.gridx = 1;
         scrollPlayersList.setVisible(false);
         teamPlayerPanel.add(scrollPlayersList, teamPanelConstraints);
-        // Añadir panel que muestre las graficas de las estadisticas de los equipos
+        // Añadir panel que muestra botones para mostrar las estadisticas del equipo seleccionado
         teamStatsPanel.setBorder(BorderFactory.createTitledBorder("Team Stats"));
         teamStatsPanel.setVisible(false);
         GridBagConstraints teamStatsPanelConstraints = new GridBagConstraints();
@@ -175,9 +175,7 @@ public class NBAView {
         chartsFrames.put(chartName, chartFrame);
     }
 
-    public void updateButtons(Team teamToDisplay) {
-        for (ButtonCreator button : buttons) {
-            button.operate(teamToDisplay, this);
-        }
+    public ArrayList<ButtonCreator> getButtons() {
+        return buttons;
     }
 }

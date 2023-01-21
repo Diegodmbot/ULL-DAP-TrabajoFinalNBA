@@ -21,36 +21,9 @@ title __DATAFINDER's Class Diagram__\n
   namespace TFA {
     namespace modelo {
       namespace datafinder {
-        class TFA.modelo.datafinder.PruebaDataFetcher {
-            {static} + main()
-        }
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace modelo {
-      namespace datafinder {
         class TFA.modelo.datafinder.StrategyContext {
             + executeRequest()
             + setStrategy()
-        }
-      }
-    }
-  }
-  
-
-  namespace TFA {
-    namespace modelo {
-      namespace datafinder {
-        class TFA.modelo.datafinder.StrategyGames {
-            ~ currentPages : String
-            ~ gamesUrl : String
-            ~ season : String
-            ~ teamId : String
-            + StrategyGames()
-            + setRequest()
         }
       }
     }
@@ -133,7 +106,6 @@ title __DATAFINDER's Class Diagram__\n
   
 
   TFA.modelo.datafinder.StrategyContext o-- TFA.modelo.datafinder.DataFetcherStrategy : strategy
-  TFA.modelo.datafinder.StrategyGames -up-|> TFA.modelo.datafinder.DataFetcherStrategy
   TFA.modelo.datafinder.StrategyPlayer -up-|> TFA.modelo.datafinder.DataFetcherStrategy
   TFA.modelo.datafinder.StrategyTeam -up-|> TFA.modelo.datafinder.DataFetcherStrategy
   TFA.modelo.datafinder.StrategyTeamPlayers -up-|> TFA.modelo.datafinder.DataFetcherStrategy

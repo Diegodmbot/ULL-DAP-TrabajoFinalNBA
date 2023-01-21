@@ -24,13 +24,4 @@ public class Player {
         String jerseyToPrint = !Objects.equals(jersey, "null") ? jersey : "N/A";
         return name + " " + lastName + " (" + positionToPrint + ") " + "#" + jerseyToPrint;
     }
-
-    public void printInfo() {
-        System.out.println("ID: " + id);
-        System.out.println("Nombre: " + name);
-        System.out.println("Apellido: " + lastName);
-        System.out.println("Posición: " + position);
-        System.out.println("Jersey: " + jersey);
-        System.out.println();
-    }
 }

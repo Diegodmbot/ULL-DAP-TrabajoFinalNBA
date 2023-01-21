@@ -10,7 +10,7 @@ public class StealsTurnoverButton implements Button {
     public void onClick(Team team, NBAView view, JButton button) {
         button.setText("STL/TOV");
         button.addActionListener(e -> {
-            view.displayPieChart("Robos/Perdidas", team.getTeamStealTurnovers());
+            view.displayPieChart("Robos/Perdidas", team.getTeamStats("steals", "turnovers"));
         });
 
     }

@@ -11,7 +11,7 @@ public class FTButton implements Button {
     public void onClick(Team team, NBAView view, JButton button) {
         button.setText("FT%");
         button.addActionListener(e -> {
-            view.displayBarChart("Tiros Libres", team.getTeamFT());
+            view.displayBarChart("Tiros Libres", team.getTeamStats("ftm", "fta"));
         });
     }
 }

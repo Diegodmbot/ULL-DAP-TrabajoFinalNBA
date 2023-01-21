@@ -11,7 +11,7 @@ public class TPButton implements Button {
     public void onClick(Team team, NBAView view, JButton button) {
         button.setText("TP%");
         button.addActionListener(e -> {
-            view.displayBarChart("Triples", team.getTeamTP());
+            view.displayBarChart("Triples", team.getTeamStats("tpm", "tpa"));
         });
     }
 }
